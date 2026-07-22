@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://sg6t7cvnvfin"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qgla3"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a5jfe"]
+distance = -650.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qrpen"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vt83r"]
+normal = Vector2(-1, 0)
+distance = -1150.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hw7l3"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt83r"]
+radius = 40.0
+height = 382.0
+
+[node name="Main" type="Node2D" unique_id=85365389]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1606724776]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=565831497]
+shape = SubResource("WorldBoundaryShape2D_qgla3")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=855755537]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1091895841]
+shape = SubResource("WorldBoundaryShape2D_a5jfe")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1314283522]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=489437313]
+shape = SubResource("WorldBoundaryShape2D_qrpen")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=1205066224]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=288171741]
+shape = SubResource("WorldBoundaryShape2D_vt83r")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1129230194]
+position = Vector2(651, 304)
+physics_material_override = SubResource("PhysicsMaterial_hw7l3")
+gravity_scale = 0.0
+linear_velocity = Vector2(400, 200)
+linear_damp_mode = 1
+
+[node name="HelloWorld" type="Label" parent="RigidBody2D" unique_id=1109324626]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -45.0
+offset_right = -93.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+text = "Hello World"
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1210661285]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vt83r")
