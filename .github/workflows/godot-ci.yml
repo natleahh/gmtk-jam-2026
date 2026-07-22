@@ -25,7 +25,7 @@ jobs:
       - name: Web Build
         run: godot -v --export "HTML5" ./build/web/index.html
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: web
           path: ./build/web/
