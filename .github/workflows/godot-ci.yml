@@ -8,7 +8,7 @@ on:
 env:
   GODOT_VERSION: 4.7
   EXPORT_NAME: gmtk-jam-2026
-  PROJECT_PATH: gmtk-jam-2026
+  PROJECT_PATH: "."
 
 jobs:
   export-web:
