@@ -6,7 +6,7 @@ on:
     workflows: [export-web]
 
 env:
-  GODOT_VERSION: 4.5
+  GODOT_VERSION: 4.3
   EXPORT_NAME: gmtk-jam-2026
   PROJECT_PATH: gmtk-jam-2026
 
