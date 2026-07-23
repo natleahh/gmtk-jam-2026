@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://g5aas5einac4"]
 
 [ext_resource type="Texture2D" uid="uid://dstsfqcn0ihh5" path="res://prototypes/ADHDHell/Pasted image 20260723145013.png" id="1_8cddi"]
+[ext_resource type="Script" uid="uid://bmjuryxsl23x2" path="res://prototypes/ADHDHell/main.gd" id="1_ndhnn"]
 [ext_resource type="Texture2D" uid="uid://wr2qryxmkjr8" path="res://prototypes/ADHDHell/Pasted image 20260723145249.png" id="2_0vcbb"]
 [ext_resource type="Texture2D" uid="uid://d4kwqosjhmwbe" path="res://prototypes/ADHDHell/Pasted image 20260723145336.png" id="3_cu5rw"]
 [ext_resource type="Script" uid="uid://g3q68s4lagrf" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
+[ext_resource type="Script" uid="uid://ciho8h0fymg6s" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
+[ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
 
-[node name="Main" type="Node2D" unique_id=623799325]
+[node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud")]
+script = ExtResource("1_ndhnn")
+dopamine_system = NodePath("DopamineSystem")
+hud = NodePath("CharacterController/Camera2D/HUD")
 
 [node name="Backgrounds" type="Node2D" parent="." unique_id=150228484]
 
@@ -25,7 +31,7 @@ scale = Vector2(1.0800971, 1.0970588)
 texture = ExtResource("3_cu5rw")
 
 [node name="CharacterController" type="Node2D" parent="." unique_id=2007909422]
-position = Vector2(632, 405)
+position = Vector2(578, 319)
 script = ExtResource("4_0vcbb")
 metadata/_edit_group_ = true
 
@@ -37,3 +43,31 @@ drag_left_margin = 0.5
 drag_top_margin = 0.5
 drag_right_margin = 0.5
 drag_bottom_margin = 0.5
+
+[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("dopamine_system", "progress_bar", "game_over_screen")]
+follow_viewport_scale = 0.001
+script = ExtResource("6_0l71j")
+dopamine_system = NodePath("../../../DopamineSystem")
+progress_bar = NodePath("ProgressBar")
+game_over_screen = NodePath("GameOverScreen")
+
+[node name="ProgressBar" type="ProgressBar" parent="CharacterController/Camera2D/HUD" unique_id=616730029]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 49.0
+grow_vertical = 2
+value = 100.0
+fill_mode = 3
+
+[node name="GameOverScreen" type="ColorRect" parent="CharacterController/Camera2D/HUD" unique_id=1143214843]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44705883, 0.09803922, 0.09019608, 0.52156866)
+
+[node name="DopamineSystem" type="Node" parent="." unique_id=2120414318]
+script = ExtResource("6_tcltd")
+dopamine_decay = 0.02
