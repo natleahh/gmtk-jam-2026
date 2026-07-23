@@ -7,7 +7,11 @@ extends Node2D
 
 func _ready() -> void:
 	dopamine_system.level_depleted.connect(game_over)
+	
+func _process(delta: float) -> void:
+	$Clock.update_clock($OKRTimer.time_left, $OKRTimer.wait_time)
 
 func game_over():
 	process_mode = Node.PROCESS_MODE_DISABLED
 	hud.game_over()
+	

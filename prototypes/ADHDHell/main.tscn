@@ -7,7 +7,12 @@
 [ext_resource type="Script" uid="uid://g3q68s4lagrf" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
 [ext_resource type="Script" uid="uid://ciho8h0fymg6s" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
 [ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
+[ext_resource type="Texture2D" uid="uid://bvc0yjc0f7jwu" path="res://prototypes/ADHDHell/clock-face.png" id="7_r4p8i"]
+[ext_resource type="Script" uid="uid://hpkotsmp3t1n" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
 [ext_resource type="Script" uid="uid://iluqsfef1fkv" path="res://prototypes/ADHDHell/okr_system.gd" id="9_ce8lw"]
+[ext_resource type="Texture2D" uid="uid://rjm1ps10kkaa" path="res://prototypes/ADHDHell/clock-hand.png" id="9_g7oiy"]
+[ext_resource type="Script" uid="uid://drlcgvulxr4d8" path="res://prototypes/ADHDHell/deadline_alert.gd" id="10_g7oiy"]
+[ext_resource type="AudioStream" uid="uid://dntmyhshnx0y3" path="res://deadline_sound.ogg" id="11_w1o0w"]
 
 [node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud")]
 script = ExtResource("1_ndhnn")
@@ -30,6 +35,16 @@ texture = ExtResource("2_0vcbb")
 position = Vector2(632, 443)
 scale = Vector2(1.0800971, 1.0970588)
 texture = ExtResource("3_cu5rw")
+
+[node name="Clock" type="Sprite2D" parent="." unique_id=459563768]
+position = Vector2(800, 120)
+scale = Vector2(2, 2)
+texture = ExtResource("7_r4p8i")
+script = ExtResource("8_suv5x")
+
+[node name="Clockhand" type="Sprite2D" parent="Clock" unique_id=1149184652]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_g7oiy")
 
 [node name="CharacterController" type="Node2D" parent="." unique_id=2007909422]
 position = Vector2(578, 319)
@@ -107,9 +122,31 @@ layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7520303, 0, 0.070110016, 1)
 
+[node name="Deadline Alert" type="Label" parent="CharacterController/Camera2D/HUD" unique_id=1710389741]
+visible = false
+offset_left = 400.0
+offset_top = 300.0
+offset_right = 918.0
+offset_bottom = 388.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "DEADLINE ALERT"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_g7oiy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CharacterController/Camera2D/HUD/Deadline Alert" unique_id=1627249281]
+stream = ExtResource("11_w1o0w")
+
 [node name="DopamineSystem" type="Node" parent="." unique_id=2120414318]
 script = ExtResource("6_tcltd")
 dopamine_decay = 0.02
 
 [node name="OKRSystem" type="Node" parent="." unique_id=1352379019]
 script = ExtResource("9_ce8lw")
+
+[node name="OKRTimer" type="Timer" parent="." unique_id=779213374]
+wait_time = 30.0
+autostart = true
+
+[connection signal="timeout" from="OKRTimer" to="CharacterController/Camera2D/HUD/Deadline Alert" method="_on_okr_timer_timeout"]
