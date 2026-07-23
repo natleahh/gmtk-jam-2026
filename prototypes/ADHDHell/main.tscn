@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://g3q68s4lagrf" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
 [ext_resource type="Script" uid="uid://ciho8h0fymg6s" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
 [ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
+[ext_resource type="Script" uid="uid://iluqsfef1fkv" path="res://prototypes/ADHDHell/okr_system.gd" id="9_ce8lw"]
 
 [node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud")]
 script = ExtResource("1_ndhnn")
@@ -44,12 +45,18 @@ drag_top_margin = 0.5
 drag_right_margin = 0.5
 drag_bottom_margin = 0.5
 
-[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("dopamine_system", "progress_bar", "game_over_screen")]
+[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("main", "okr_system", "dopamine_system", "progress_bar", "game_over_screen", "h_box_container", "color_rect_1", "color_rect_2", "color_rect_3")]
 follow_viewport_scale = 0.001
 script = ExtResource("6_0l71j")
+main = NodePath("../../..")
+okr_system = NodePath("../../../OKRSystem")
 dopamine_system = NodePath("../../../DopamineSystem")
 progress_bar = NodePath("ProgressBar")
 game_over_screen = NodePath("GameOverScreen")
+h_box_container = NodePath("Control/HBoxContainer")
+color_rect_1 = NodePath("Control/HBoxContainer/ColorRect1")
+color_rect_2 = NodePath("Control/HBoxContainer/ColorRect2")
+color_rect_3 = NodePath("Control/HBoxContainer/ColorRect3")
 
 [node name="ProgressBar" type="ProgressBar" parent="CharacterController/Camera2D/HUD" unique_id=616730029]
 anchors_preset = 9
@@ -68,6 +75,41 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.44705883, 0.09803922, 0.09019608, 0.52156866)
 
+[node name="Control" type="Control" parent="CharacterController/Camera2D/HUD" unique_id=1094649383]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterController/Camera2D/HUD/Control" unique_id=155006258]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -149.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="ColorRect1" type="ColorRect" parent="CharacterController/Camera2D/HUD/Control/HBoxContainer" unique_id=892428416]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.7520303, 0, 0.070110016, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CharacterController/Camera2D/HUD/Control/HBoxContainer" unique_id=1092362826]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.7520303, 0, 0.070110016, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CharacterController/Camera2D/HUD/Control/HBoxContainer" unique_id=1365946085]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.7520303, 0, 0.070110016, 1)
+
 [node name="DopamineSystem" type="Node" parent="." unique_id=2120414318]
 script = ExtResource("6_tcltd")
 dopamine_decay = 0.02
+
+[node name="OKRSystem" type="Node" parent="." unique_id=1352379019]
+script = ExtResource("9_ce8lw")

@@ -1,4 +1,7 @@
 extends Node2D
+
+
+
 @export var dopamine_system: Dopaminesystem
 @export var hud: HUD
 
