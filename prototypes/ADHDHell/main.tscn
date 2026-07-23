@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dstsfqcn0ihh5" path="res://prototypes/ADHDHell/Pasted image 20260723145013.png" id="1_8cddi"]
 [ext_resource type="Texture2D" uid="uid://wr2qryxmkjr8" path="res://prototypes/ADHDHell/Pasted image 20260723145249.png" id="2_0vcbb"]
 [ext_resource type="Texture2D" uid="uid://d4kwqosjhmwbe" path="res://prototypes/ADHDHell/Pasted image 20260723145336.png" id="3_cu5rw"]
+[ext_resource type="Script" uid="uid://g3q68s4lagrf" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
 
 [node name="Main" type="Node2D" unique_id=623799325]
 
@@ -22,3 +23,17 @@ texture = ExtResource("2_0vcbb")
 position = Vector2(632, 443)
 scale = Vector2(1.0800971, 1.0970588)
 texture = ExtResource("3_cu5rw")
+
+[node name="CharacterController" type="Node2D" parent="." unique_id=2007909422]
+position = Vector2(632, 405)
+script = ExtResource("4_0vcbb")
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="CharacterController" unique_id=554737291]
+zoom = Vector2(1.7, 1.7)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.5
+drag_top_margin = 0.5
+drag_right_margin = 0.5
+drag_bottom_margin = 0.5
