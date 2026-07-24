@@ -38,6 +38,10 @@ func _ready() -> void:
 func start() -> void:
 	text_box.hint = "Claude, please generate the big presentation"
 	_success_chance = initial_success_chance
+	
+func focus() -> void:
+	$VBoxContainer/TextBox/LineEdit.grab_focus()
+	
 
 func _on_correct_input(player_input: String) -> void:
 	var claude_text: String
@@ -66,3 +70,6 @@ func update_chat(player_input: String, claude_text: String) -> void:
 	chat_area.add_child(player)
 	chat_area.add_child(claude)
 	scroll_container.ensure_control_visible(claude)
+	
+func focus_tab():
+	$VBoxContainer/TextBox/LineEdit.grab_focus()

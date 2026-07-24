@@ -5,6 +5,7 @@ var hint: String:
 	set(text):
 		$LineEdit.max_length = len(text)
 		_hint = text
+		$RichTextLabel.text = "[color=%s]" % Color("dark gray").to_html() + hint
 	get:
 		return _hint
 
@@ -13,7 +14,7 @@ signal submission_pass(string: String)
 func _ready() -> void:
 	$LineEdit.text_changed.connect(_on_input_text_change)
 	$LineEdit.text_submitted.connect(_on_input_submitted)
-
+	
 func _on_input_text_change(input_text: String) -> void:
 	var player_text = ""
 	var remaining_text = "[color=%s]" % Color("dark gray").to_html() + hint.right(-len(input_text))
