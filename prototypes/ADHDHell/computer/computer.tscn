@@ -11,12 +11,14 @@ offset_left = -181.46516
 offset_top = -147.66757
 offset_right = 184.24269
 offset_bottom = 62.895447
-current_tab = 1
+current_tab = 0
 
 [node name="Claude" parent="TabContainer" unique_id=668862452 instance=ExtResource("3_vmi4j")]
-visible = false
 layout_mode = 2
 
 [node name="CatPics" type="Panel" parent="TabContainer" unique_id=1011314897]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1082093241]

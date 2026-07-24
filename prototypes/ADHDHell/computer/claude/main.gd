@@ -21,11 +21,14 @@ const CLAUDE_TEXT: Array[Array] = [
 	"Curabitur eleifend ante ut blandit dapibus."]
 ]
 
+@export_range(0.0, 1.0, 0.01) var initial_success_chance: float = 0.1
+@export_range(1.0, 2.0, 0.1) var success_scaling: float = 1.1
 
 @onready var current_text: Array = CLAUDE_TEXT.pick_random()
-
 @export var text_box: ReactiveTextEdit
 @export var chat_area: VBoxContainer
+
+var _success_chance: float = initial_success_chance
 
 func _ready() -> void:
 	start()
@@ -33,14 +36,16 @@ func _ready() -> void:
 
 func start() -> void:
 	text_box.hint = "Claude, please generate the big presentation"
+	_success_chance = initial_success_chance
 
 func _on_correct_input(player_input: String) -> void:
 	var claude_text: String
-	if randf() < 0.2:
+	if randf() < _success_chance:
 		text_box.hint = ""
 		claude_text = "Ok, got it! Generating big presentation."
 		start()
 	else:
+		_success_chance *= success_scaling
 		current_text = CLAUDE_TEXT.pick_random()
 		text_box.hint = current_text[0]
 		claude_text = current_text[1]

@@ -12,5 +12,6 @@ func _process(delta: float) -> void:
 
 
 func _on_okr_timer_timeout() -> void:
+	return
 	visible = true# Replace with function body.
 	$AudioStreamPlayer.play()

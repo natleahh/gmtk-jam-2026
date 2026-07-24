@@ -13,41 +13,81 @@ offset_bottom = -468.43698
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xaus2")
-text_box = NodePath("TextBox")
+success_scaling = 1.5
+text_box = NodePath("VBoxContainer/TextBox")
 chat_area = NodePath("ChatWindow/ChatArea")
 metadata/_tab_index = 0
 
 [node name="ChatWindow" type="Control" parent="." unique_id=876791275]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -27.563019
+anchors_preset = 0
+offset_right = 365.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
 
 [node name="ChatArea" type="VBoxContainer" parent="ChatWindow" unique_id=427156715]
+visible = false
+custom_maximum_size = Vector2(-1, 110)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="TextBox" type="Control" parent="." unique_id=326267725]
+[node name="Chatbubble" type="Label" parent="ChatWindow/ChatArea" unique_id=1411030897]
+custom_maximum_size = Vector2(318, -1)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sollicitudin nisi a ipsum elementum, at ultrices velit cursus. Fusce sit amet sapien id tellus mattis scelerisque sed ut sapien. Vestibulum sed leo ultricies, accumsan diam nec, imperdiet dui. Vivamus ornare dolor ex, ut auctor magna interdum id. Pellentesque in tellus in eros bibendum vehicula posuere id metus. Nulla urna neque, vestibulum pharetra purus ut, faucibus sagittis urna. Aenean imperdiet laoreet ligula, id pulvinar nisl malesuada sit amet. Integer eu pellentesque felis. Cras egestas lacinia nunc eget eleifend. Phasellus vestibulum eget est eget accumsan. Nam vulputate nisl turpis, sit amet sollicitudin erat faucibus at. Nulla tempus luctus arcu, sit amet aliquet ex egestas posuere. "
+autowrap_mode = 2
+
+[node name="Chatbubble2" type="Label" parent="ChatWindow/ChatArea" unique_id=672737879]
+custom_maximum_size = Vector2(318, -1)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sollicitudin nisi a ipsum elementum, at ultrices velit cursus. Fusce sit amet sapien id tellus mattis scelerisque sed ut sapien. Vestibulum sed leo ultricies, accumsan diam nec, imperdiet dui. Vivamus ornare dolor ex, ut auctor magna interdum id. Pellentesque in tellus in eros bibendum vehicula posuere id metus. Nulla urna neque, vestibulum pharetra purus ut, faucibus sagittis urna. Aenean imperdiet laoreet ligula, id pulvinar nisl malesuada sit amet. Integer eu pellentesque felis. Cras egestas lacinia nunc eget eleifend. Phasellus vestibulum eget est eget accumsan. Nam vulputate nisl turpis, sit amet sollicitudin erat faucibus at. Nulla tempus luctus arcu, sit amet aliquet ex egestas posuere. "
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1395010488]
+propagate_maximum_size = false
 layout_mode = 1
-anchor_top = 0.76900005
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -0.083969116
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=508395173]
+layout_mode = 2
+size_flags_vertical = 3
+draw_focus_border = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=1132773099]
+custom_maximum_size = Vector2(365, 143)
+propagate_maximum_size = false
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="ChatBox" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=875230597]
+layout_mode = 2
+text = "Etiam sollicitudin nisi a ipsum elementum, at ultrices velit cursus. Fusce sit amet sapien id tellus mattis scelerisque sed ut sapien."
+autowrap_mode = 3
+
+[node name="ChatBox2" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1354136406]
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sollicitudin nisi a ipsum elementum, at ultrices velit cursus. Fusce sit amet sapien id tellus mattis scelerisque sed ut sapien."
+autowrap_mode = 3
+
+[node name="TextBox" type="Control" parent="VBoxContainer" unique_id=326267725]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 script = ExtResource("2_ik178")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextBox" unique_id=1258669660]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TextBox" unique_id=1258669660]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +99,7 @@ fit_content = true
 autowrap_trim_flags = 0
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="TextBox/RichTextLabel" unique_id=1598559909]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/TextBox/RichTextLabel" unique_id=1598559909]
 modulate = Color(0.28235295, 0.28235295, 0.28235295, 0.28235295)
 layout_mode = 1
 anchors_preset = 15
@@ -69,7 +109,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.5609549, 0.5609549, 0.5609549, 1)
 
-[node name="LineEdit" type="LineEdit" parent="TextBox" unique_id=616655172]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TextBox" unique_id=616655172]
 visibility_layer = 0
 layout_mode = 1
 anchors_preset = 15
