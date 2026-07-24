@@ -16,6 +16,7 @@ current_tab = 1
 [node name="Claude" parent="TabContainer" unique_id=668862452 instance=ExtResource("3_vmi4j")]
 visible = false
 layout_mode = 2
+success_scaling = 1.1
 
 [node name="CatPics" type="Panel" parent="TabContainer" unique_id=1011314897]
 layout_mode = 2

@@ -1,6 +1,12 @@
 class_name ReactiveTextEdit extends Control
 
-var hint: String = "Lorem Ipsum"
+var _hint: String = "Lorem Ipsum"
+var hint: String:
+	set(text):
+		$LineEdit.max_length = len(text)
+		_hint = text
+	get:
+		return _hint
 
 signal submission_pass(string: String)
 
@@ -26,8 +32,8 @@ func _on_input_text_change(input_text: String) -> void:
 				player_text += (
 					"[color={0}]{1}[/color]".format([Color("red").to_html(), input_text[i]])
 					)
-		if len(input_text) > len(hint):
-			player_text += "[color={0}]{1}[/color]".format([Color("red").to_html(), input_text.right(-len(hint))])
+		#if len(input_text) > len(hint):
+			#$LineEdit.text = input_text.left(len(hint))
 	$RichTextLabel.text = player_text + remaining_text
 
 func _on_input_submitted(input_text: String) -> void:

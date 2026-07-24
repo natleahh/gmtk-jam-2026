@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bhjkr0i2uoe7e" path="res://prototypes/ADHDHell/computer/claude/main.gd" id="1_xaus2"]
 [ext_resource type="Script" uid="uid://biqxf0b3yn4uk" path="res://prototypes/ADHDHell/computer/claude/text_box.gd" id="2_ik178"]
 
-[node name="Claude" type="Control" unique_id=668862452 node_paths=PackedStringArray("text_box", "chat_area")]
+[node name="Claude" type="Control" unique_id=668862452 node_paths=PackedStringArray("text_box", "chat_area", "scroll_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,41 +13,51 @@ offset_bottom = -468.43698
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xaus2")
-text_box = NodePath("TextBox")
-chat_area = NodePath("ChatWindow/ChatArea")
+success_scaling = 1.5
+text_box = NodePath("VBoxContainer/TextBox")
+chat_area = NodePath("VBoxContainer/ScrollContainer/VBoxContainer")
+scroll_container = NodePath("VBoxContainer/ScrollContainer")
 metadata/_tab_index = 0
 
-[node name="ChatWindow" type="Control" parent="." unique_id=876791275]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1395010488]
+propagate_maximum_size = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -27.563019
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ChatArea" type="VBoxContainer" parent="ChatWindow" unique_id=427156715]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -14.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=508395173]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+draw_focus_border = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=1132773099]
+propagate_maximum_size = false
+clip_contents = true
+layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 2
 
-[node name="TextBox" type="Control" parent="." unique_id=326267725]
-layout_mode = 1
-anchor_top = 0.76900005
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -0.083969116
-grow_horizontal = 2
-grow_vertical = 0
+[node name="ChatBox" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=875230597]
+layout_mode = 2
+text = "Etiam sollicitudin nisi a ipsum elementum, at ultrices velit cursus. Fusce sit amet sapien id tellus mattis scelerisque sed ut sapien."
+autowrap_mode = 3
+
+[node name="ChatBox2" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1354136406]
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sollicitudin nisi a ipsum elementum, at ultrices velit cursus. Fusce sit amet sapien id tellus mattis scelerisque sed ut sapien."
+autowrap_mode = 3
+
+[node name="TextBox" type="Control" parent="VBoxContainer" unique_id=326267725]
+layout_mode = 2
+size_flags_vertical = 3
 script = ExtResource("2_ik178")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextBox" unique_id=1258669660]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TextBox" unique_id=1258669660]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +69,7 @@ fit_content = true
 autowrap_trim_flags = 0
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="TextBox/RichTextLabel" unique_id=1598559909]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/TextBox/RichTextLabel" unique_id=1598559909]
 modulate = Color(0.28235295, 0.28235295, 0.28235295, 0.28235295)
 layout_mode = 1
 anchors_preset = 15
@@ -69,7 +79,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.5609549, 0.5609549, 0.5609549, 1)
 
-[node name="LineEdit" type="LineEdit" parent="TextBox" unique_id=616655172]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TextBox" unique_id=616655172]
 visibility_layer = 0
 layout_mode = 1
 anchors_preset = 15
@@ -79,4 +89,4 @@ grow_horizontal = 2
 grow_vertical = 2
 keep_editing_on_text_submit = true
 caret_force_displayed = true
-secret_character = " "
+secret = true
