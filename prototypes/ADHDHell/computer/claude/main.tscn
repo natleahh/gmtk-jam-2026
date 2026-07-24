@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://8hydug6xspq1"]
+
+[ext_resource type="Script" uid="uid://bhjkr0i2uoe7e" path="res://prototypes/ADHDHell/computer/claude/main.gd" id="1_xaus2"]
+[ext_resource type="Script" uid="uid://biqxf0b3yn4uk" path="res://prototypes/ADHDHell/computer/claude/text_box.gd" id="2_ik178"]
+
+[node name="Claude" type="Control" unique_id=668862452 node_paths=PackedStringArray("text_box", "chat_window")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xaus2")
+text_box = NodePath("TextBox")
+chat_window = NodePath("ChatWindow")
+metadata/_tab_index = 0
+
+[node name="ChatWindow" type="Control" parent="." unique_id=876791275]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextBox" type="Control" parent="." unique_id=326267725]
+layout_mode = 1
+anchor_top = 0.91
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.32000732
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_ik178")
+
+[node name="ColorRect" type="ColorRect" parent="TextBox" unique_id=1598559909]
+modulate = Color(0.28235295, 0.28235295, 0.28235295, 0.28235295)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5609549, 0.5609549, 0.5609549, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextBox" unique_id=1258669660]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+autowrap_trim_flags = 0
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="TextBox" unique_id=616655172]
+visibility_layer = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+caret_force_displayed = true
+secret_character = " "
