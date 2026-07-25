@@ -9,6 +9,8 @@ env:
   GODOT_VERSION: 4.7
   EXPORT_NAME: gmtk-jam-2026
   PROJECT_PATH: "."
+  GIT_EMAIL: "71596982+natleahh@users.noreply.github.com"
+  GIT_USER: "natleahh"
 
 jobs:
   export-web:
@@ -36,3 +38,11 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Install rsync
+        run: |
+          apt-get update && apt-get install -y rsync
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: release # The branch the action should deploy to.
+          folder: build/web # The folder the action should deploy.
