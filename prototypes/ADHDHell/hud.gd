@@ -2,7 +2,6 @@ class_name HUD extends CanvasLayer
 
 @export var main: Node2D
 
-@export var okr_system: OKRSystem
 @export var dopamine_system: Dopaminesystem
 
 @export var progress_bar: ProgressBar
@@ -21,7 +20,7 @@ class_name HUD extends CanvasLayer
 
 func _ready() -> void:
 	dopamine_system.level_updated.connect(_on_updated_dopamine)
-	okr_system.completion.connect(_on_update_okr)
+	OkrSystem.completion_update.connect(_on_update_okr)
 
 		
 	
@@ -29,7 +28,7 @@ func _on_updated_dopamine():
 	progress_bar.value = dopamine_system.level
 
 func _on_update_okr():
-	tasks[okr_system.current].color = Color("green")
+	tasks[OkrSystem.current].color = Color("green")
 		
 func game_over():
 	game_over_screen.visible = true

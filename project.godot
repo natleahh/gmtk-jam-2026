@@ -14,6 +14,10 @@ config/name="gmtk-jam-2026"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+OkrSystem="*uid://iluqsfef1fkv"
+
 [display]
 
 window/stretch/mode="canvas_items"

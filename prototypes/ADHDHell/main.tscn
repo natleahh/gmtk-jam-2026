@@ -58,11 +58,10 @@ drag_top_margin = 0.5
 drag_right_margin = 0.5
 drag_bottom_margin = 0.5
 
-[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("main", "okr_system", "dopamine_system", "progress_bar", "game_over_screen", "h_box_container", "color_rect_1", "color_rect_2", "color_rect_3")]
+[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("main", "dopamine_system", "progress_bar", "game_over_screen", "h_box_container", "color_rect_1", "color_rect_2", "color_rect_3")]
 follow_viewport_scale = 0.001
 script = ExtResource("6_0l71j")
 main = NodePath("../../..")
-okr_system = NodePath("../../../OKRSystem")
 dopamine_system = NodePath("../../../DopamineSystem")
 progress_bar = NodePath("ProgressBar")
 game_over_screen = NodePath("GameOverScreen")
