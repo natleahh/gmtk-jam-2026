@@ -38,6 +38,8 @@ func _on_input_text_change(input_text: String) -> void:
 	$RichTextLabel.text = player_text + remaining_text
 
 func _on_input_submitted(input_text: String) -> void:
+	print(hint)
+	print(input_text)
 	if hint == input_text:
 		submission_pass.emit(input_text)
 		$LineEdit.clear()
