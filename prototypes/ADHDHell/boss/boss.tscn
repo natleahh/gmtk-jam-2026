@@ -15,18 +15,34 @@ point_count = 2
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_oftmp")
+}],
+"loop": 1,
+"name": &"patrol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_3wusa")
 }],
 "loop": 0,
-"name": &"glare",
+"name": &"pissed",
 "speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_oftmp")
+"texture": ExtResource("2_3wusa")
 }],
 "loop": 1,
-"name": &"walk",
+"name": &"satisfied",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oftmp")
+}],
+"loop": 1,
+"name": &"sus",
 "speed": 5.0
 }]
 
@@ -44,7 +60,7 @@ position = Vector2(100, 400)
 
 [node name="BossPatrollingSprite" type="AnimatedSprite2D" parent="PatrolPath/PatrolFollow" unique_id=402737677]
 sprite_frames = SubResource("SpriteFrames_15pk6")
-animation = &"walk"
+animation = &"satisfied"
 
 [node name="BossAlert" type="Sprite2D" parent="PatrolPath/PatrolFollow/BossPatrollingSprite" unique_id=487997414]
 position = Vector2(29, -362)
