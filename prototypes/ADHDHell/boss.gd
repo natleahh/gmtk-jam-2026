@@ -21,7 +21,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	match current_state:
 		BossState.PATROL:
-			boss_patrolling_sprite.animation = "patrol"
+			switch_animation("patrol")
 			# Progressing Logic
 			var next_position: float = patrol_follow.progress_ratio + velocity
 			if next_position < 0 or next_position > 1:
@@ -33,14 +33,17 @@ func _process(delta: float) -> void:
 			boss_patrolling_sprite.flip_h = velocity > 0
 		BossState.SUS:
 			velocity = 0
-			boss_patrolling_sprite.animation = "sus"
+			switch_animation("sus")
 		BossState.CHECKING:
 			# TODO: Check if player is behaving
-			pass
+			if randi() % 2 == 0:
+				current_state = BossState.PISSED
+			else:
+				current_state = BossState.SATISFIED
 		BossState.PISSED:
-			boss_patrolling_sprite.animation = "pissed"
+			switch_animation("pissed")
 		BossState.SATISFIED:
-			boss_patrolling_sprite.animation = "satisfied"
+			switch_animation("satisfied")
 
 func _on_timer_timeout() -> void:
 	current_state = BossState.SUS
@@ -55,3 +58,7 @@ func _on_boss_patrolling_sprite_animation_finished() -> void:
 
 func set_random_wait_time() -> void:
 	patrol_timer.start(randfn(5, 2) + 0.5)
+
+func switch_animation(animation_name: String) -> void:
+	if boss_patrolling_sprite.animation != animation_name:
+		boss_patrolling_sprite.play(animation_name)

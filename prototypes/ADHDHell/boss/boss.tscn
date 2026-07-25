@@ -17,9 +17,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_oftmp")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"patrol",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -33,24 +33,25 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_3wusa")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"satisfied",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_oftmp")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"sus",
-"speed": 5.0
+"speed": 1.0
 }]
 
-[node name="Boss" type="Node2D" unique_id=856368287 node_paths=PackedStringArray("patrol_follow", "boss_patrolling_sprite")]
+[node name="Boss" type="Node2D" unique_id=856368287 node_paths=PackedStringArray("patrol_follow", "boss_patrolling_sprite", "patrol_timer")]
 script = ExtResource("1_6n03a")
 initial_velocity = 0.10000000000000007
 patrol_follow = NodePath("PatrolPath/PatrolFollow")
 boss_patrolling_sprite = NodePath("PatrolPath/PatrolFollow/BossPatrollingSprite")
+patrol_timer = NodePath("PatrolTimer")
 
 [node name="PatrolPath" type="Path2D" parent="." unique_id=1519328243]
 curve = SubResource("Curve2D_w2pej")
@@ -60,7 +61,7 @@ position = Vector2(100, 400)
 
 [node name="BossPatrollingSprite" type="AnimatedSprite2D" parent="PatrolPath/PatrolFollow" unique_id=402737677]
 sprite_frames = SubResource("SpriteFrames_15pk6")
-animation = &"satisfied"
+animation = &"sus"
 
 [node name="BossAlert" type="Sprite2D" parent="PatrolPath/PatrolFollow/BossPatrollingSprite" unique_id=487997414]
 position = Vector2(29, -362)
