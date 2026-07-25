@@ -32,15 +32,13 @@ func focus() -> void:
 
 func _on_correct_input(player_input: String) -> void:
 	var claude_text: String
-	var correct = false
-	if randf() < _success_chance:
-		correct = true
+	var correct = randf() < _success_chance
+	if correct:
 		text_box.hint = ""
 		claude_text = _current_conversation[0][2]
 		start()
 		OkrSystem.current += 1
 	else:
-		correct = false
 		_success_chance *= success_scaling
 		claude_text = current_text[1]
 		current_text = _current_conversation.slice(1).pick_random()
