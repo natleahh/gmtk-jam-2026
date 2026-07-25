@@ -16,4 +16,5 @@ func _process(delta: float) -> void:
 
 
 func _on_tab_changed(tab: int) -> void:
-	set_tab_focus(tab) # Replace with function body.
+	set_tab_focus(tab) # Replace with function body
+	BehaviourTrackerSystem._good_behaviour = tab == 0
