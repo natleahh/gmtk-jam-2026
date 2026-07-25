@@ -36,16 +36,19 @@ func _process(delta: float) -> void:
 			switch_animation("sus")
 		BossState.CHECKING:
 			# TODO: Check if player is behaving
-			if randi() % 2 == 0:
-				current_state = BossState.PISSED
-			else:
+			if BehaviourTrackerSystem._good_behaviour:
+				
 				current_state = BossState.SATISFIED
+			else:
+				current_state = BossState.PISSED
+				BehaviourTrackerSystem.bad_behaviour_occured.emit()
 		BossState.PISSED:
 			switch_animation("pissed")
 		BossState.SATISFIED:
 			switch_animation("satisfied")
 
 func _on_timer_timeout() -> void:
+	print("Setting sus")
 	current_state = BossState.SUS
 
 func _on_boss_patrolling_sprite_animation_finished() -> void:

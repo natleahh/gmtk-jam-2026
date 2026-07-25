@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 OkrSystem="*uid://iluqsfef1fkv"
+BehaviourTrackerSystem="*uid://bpxmtrw1aa55y"
 
 [display]
 

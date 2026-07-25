@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dstsfqcn0ihh5" path="res://prototypes/ADHDHell/Pasted image 20260723145013.png" id="1_8cddi"]
 [ext_resource type="Script" uid="uid://bmjuryxsl23x2" path="res://prototypes/ADHDHell/main.gd" id="1_ndhnn"]
 [ext_resource type="Texture2D" uid="uid://wr2qryxmkjr8" path="res://prototypes/ADHDHell/Pasted image 20260723145249.png" id="2_0vcbb"]
+[ext_resource type="Script" uid="uid://bpxmtrw1aa55y" path="res://prototypes/ADHDHell/behaviour_tracker_system.gd" id="2_s8r6p"]
 [ext_resource type="Script" uid="uid://g3q68s4lagrf" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
 [ext_resource type="PackedScene" uid="uid://dlnnt1jsme788" path="res://prototypes/ADHDHell/computer/computer.tscn" id="4_g7oiy"]
 [ext_resource type="Script" uid="uid://ciho8h0fymg6s" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
@@ -21,6 +22,9 @@ dopamine_system = NodePath("DopamineSystem")
 hud = NodePath("CharacterController/Camera2D/HUD")
 clock = NodePath("Wall/Clock")
 okr_timer = NodePath("OKRTimer")
+
+[node name="BehaviourTrackerSystem" type="Node" parent="." unique_id=1246224387]
+script = ExtResource("2_s8r6p")
 
 [node name="DopamineSystem" type="Node" parent="." unique_id=2120414318]
 script = ExtResource("6_tcltd")
