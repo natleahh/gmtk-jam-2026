@@ -38,6 +38,7 @@ func _on_correct_input(player_input: String) -> void:
 		text_box.hint = ""
 		claude_text = _current_conversation[0][2]
 		start()
+		OkrSystem.current += 1
 	else:
 		correct = false
 		_success_chance *= success_scaling
