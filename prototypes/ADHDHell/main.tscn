@@ -31,6 +31,7 @@ wait_time = 30.0
 autostart = true
 
 [node name="Wall" type="CanvasLayer" parent="." unique_id=1918016408]
+layer = -3
 
 [node name="PastedImage20260723145013" type="Sprite2D" parent="Wall" unique_id=174354709]
 z_index = -3
@@ -49,8 +50,10 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_g7oiy")
 
 [node name="Hallway" type="CanvasLayer" parent="." unique_id=2122120591]
+layer = 2
 
 [node name="WorkSpace" type="CanvasLayer" parent="." unique_id=256454366]
+layer = -1
 
 [node name="Cubicle" type="Sprite2D" parent="WorkSpace" unique_id=41187563]
 position = Vector2(670, 442.62503)
