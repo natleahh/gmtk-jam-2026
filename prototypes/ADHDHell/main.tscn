@@ -19,30 +19,47 @@ script = ExtResource("1_ndhnn")
 dopamine_system = NodePath("DopamineSystem")
 hud = NodePath("CharacterController/Camera2D/HUD")
 
-[node name="Backgrounds" type="Node2D" parent="." unique_id=150228484]
+[node name="DopamineSystem" type="Node" parent="." unique_id=2120414318]
+script = ExtResource("6_tcltd")
+dopamine_decay = 0.02
 
-[node name="PastedImage20260723145013" type="Sprite2D" parent="Backgrounds" unique_id=174354709]
+[node name="OKRSystem" type="Node" parent="." unique_id=1352379019]
+script = ExtResource("9_ce8lw")
+
+[node name="OKRTimer" type="Timer" parent="." unique_id=779213374]
+wait_time = 30.0
+autostart = true
+
+[node name="Wall" type="CanvasLayer" parent="." unique_id=1918016408]
+
+[node name="PastedImage20260723145013" type="Sprite2D" parent="Wall" unique_id=174354709]
+z_index = -3
 position = Vector2(579, 323.25)
 scale = Vector2(0.8469388, 0.70487267)
 texture = ExtResource("1_8cddi")
 
-[node name="PastedImage20260723145249" type="Sprite2D" parent="Backgrounds" unique_id=41187563]
-position = Vector2(670, 442.62503)
-scale = Vector2(0.823492, 0.70558614)
-texture = ExtResource("2_0vcbb")
-
-[node name="Computer" parent="." unique_id=735334881 instance=ExtResource("4_g7oiy")]
-position = Vector2(632, 443)
-
-[node name="Clock" type="Sprite2D" parent="." unique_id=459563768]
+[node name="Clock" type="Sprite2D" parent="Wall" unique_id=459563768]
 position = Vector2(800, 120)
 scale = Vector2(2, 2)
 texture = ExtResource("7_r4p8i")
 script = ExtResource("8_suv5x")
 
-[node name="Clockhand" type="Sprite2D" parent="Clock" unique_id=1149184652]
+[node name="Clockhand" type="Sprite2D" parent="Wall/Clock" unique_id=1149184652]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_g7oiy")
+
+[node name="Hallway" type="CanvasLayer" parent="." unique_id=2122120591]
+
+[node name="WorkSpace" type="CanvasLayer" parent="." unique_id=256454366]
+
+[node name="Cubicle" type="Sprite2D" parent="WorkSpace" unique_id=41187563]
+position = Vector2(670, 442.62503)
+scale = Vector2(0.823492, 0.70558614)
+texture = ExtResource("2_0vcbb")
+
+[node name="Computer" parent="WorkSpace" unique_id=735334881 instance=ExtResource("4_g7oiy")]
+position = Vector2(632, 443)
+scale = Vector2(1, 0.99999994)
 
 [node name="CharacterController" type="Node2D" parent="." unique_id=2007909422]
 position = Vector2(578, 319)
@@ -136,16 +153,5 @@ script = ExtResource("10_g7oiy")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CharacterController/Camera2D/HUD/Deadline Alert" unique_id=1627249281]
 stream = ExtResource("11_w1o0w")
-
-[node name="DopamineSystem" type="Node" parent="." unique_id=2120414318]
-script = ExtResource("6_tcltd")
-dopamine_decay = 0.02
-
-[node name="OKRSystem" type="Node" parent="." unique_id=1352379019]
-script = ExtResource("9_ce8lw")
-
-[node name="OKRTimer" type="Timer" parent="." unique_id=779213374]
-wait_time = 30.0
-autostart = true
 
 [connection signal="timeout" from="OKRTimer" to="CharacterController/Camera2D/HUD/Deadline Alert" method="_on_okr_timer_timeout"]
