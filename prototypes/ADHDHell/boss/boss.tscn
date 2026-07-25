@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://br7aiyq58itld"]
+
+[ext_resource type="Script" uid="uid://drq8rlnurvmxq" path="res://prototypes/ADHDHell/boss.gd" id="1_6n03a"]
+[ext_resource type="Texture2D" uid="uid://0415e7pkjtc6" path="res://prototypes/ADHDHell/boss/boss-forward.png" id="2_3wusa"]
+[ext_resource type="Texture2D" uid="uid://eoesfrgmoarr" path="res://prototypes/ADHDHell/boss/boss-alert.png" id="2_oftmp"]
+[ext_resource type="Texture2D" uid="uid://bnlhvuv0qrwwa" path="res://prototypes/ADHDHell/boss/boss-side.png" id="3_oftmp"]
+
+[sub_resource type="Curve2D" id="Curve2D_w2pej"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 100, 400, 0, 0, 0, 0, 1100, 400)
+}
+point_count = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15pk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3wusa")
+}],
+"loop": 0,
+"name": &"glare",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_oftmp")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Boss" type="Node2D" unique_id=856368287 node_paths=PackedStringArray("patrol_follow", "boss_patrolling_sprite")]
+script = ExtResource("1_6n03a")
+initial_velocity = 0.10000000000000007
+patrol_follow = NodePath("PatrolPath/PatrolFollow")
+boss_patrolling_sprite = NodePath("PatrolPath/PatrolFollow/BossPatrollingSprite")
+
+[node name="PatrolPath" type="Path2D" parent="." unique_id=1519328243]
+curve = SubResource("Curve2D_w2pej")
+
+[node name="PatrolFollow" type="PathFollow2D" parent="PatrolPath" unique_id=945573951]
+position = Vector2(100, 400)
+
+[node name="BossPatrollingSprite" type="AnimatedSprite2D" parent="PatrolPath/PatrolFollow" unique_id=402737677]
+sprite_frames = SubResource("SpriteFrames_15pk6")
+animation = &"walk"
+
+[node name="BossAlert" type="Sprite2D" parent="PatrolPath/PatrolFollow/BossPatrollingSprite" unique_id=487997414]
+position = Vector2(29, -362)
+scale = Vector2(0.65, 0.31463414)
+texture = ExtResource("2_oftmp")
+
+[node name="PatrolTimer" type="Timer" parent="." unique_id=805256266]
+wait_time = 2.0
+
+[connection signal="animation_finished" from="PatrolPath/PatrolFollow/BossPatrollingSprite" to="." method="_on_boss_patrolling_sprite_animation_finished"]
+[connection signal="timeout" from="PatrolTimer" to="." method="_on_timer_timeout"]

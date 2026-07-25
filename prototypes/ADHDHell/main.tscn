@@ -9,15 +9,18 @@
 [ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
 [ext_resource type="Texture2D" uid="uid://bvc0yjc0f7jwu" path="res://prototypes/ADHDHell/clock-face.png" id="7_r4p8i"]
 [ext_resource type="Script" uid="uid://hpkotsmp3t1n" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
+[ext_resource type="PackedScene" uid="uid://br7aiyq58itld" path="res://prototypes/ADHDHell/boss/boss.tscn" id="8_w1o0w"]
 [ext_resource type="Script" uid="uid://iluqsfef1fkv" path="res://prototypes/ADHDHell/okr_system.gd" id="9_ce8lw"]
 [ext_resource type="Texture2D" uid="uid://rjm1ps10kkaa" path="res://prototypes/ADHDHell/clock-hand.png" id="9_g7oiy"]
 [ext_resource type="Script" uid="uid://drlcgvulxr4d8" path="res://prototypes/ADHDHell/deadline_alert.gd" id="10_g7oiy"]
 [ext_resource type="AudioStream" uid="uid://dntmyhshnx0y3" path="res://deadline_sound.ogg" id="11_w1o0w"]
 
-[node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud")]
+[node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud", "clock", "okr_timer")]
 script = ExtResource("1_ndhnn")
 dopamine_system = NodePath("DopamineSystem")
 hud = NodePath("CharacterController/Camera2D/HUD")
+clock = NodePath("Wall/Clock")
+okr_timer = NodePath("OKRTimer")
 
 [node name="DopamineSystem" type="Node" parent="." unique_id=2120414318]
 script = ExtResource("6_tcltd")
@@ -50,7 +53,9 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_g7oiy")
 
 [node name="Hallway" type="CanvasLayer" parent="." unique_id=2122120591]
-layer = 2
+layer = -2
+
+[node name="Boss" parent="Hallway" unique_id=856368287 instance=ExtResource("8_w1o0w")]
 
 [node name="WorkSpace" type="CanvasLayer" parent="." unique_id=256454366]
 layer = -1
@@ -65,7 +70,7 @@ position = Vector2(632, 443)
 scale = Vector2(1, 0.99999994)
 
 [node name="CharacterController" type="Node2D" parent="." unique_id=2007909422]
-position = Vector2(578, 319)
+position = Vector2(578, 333)
 script = ExtResource("4_0vcbb")
 metadata/_edit_group_ = true
 
