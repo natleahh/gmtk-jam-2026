@@ -16,6 +16,8 @@ class_name HUD extends CanvasLayer
 		color_rect_2,
 		color_rect_3,
 ]
+
+@export var restart_control: VBoxContainer
 @export var deadline_alert: Label
 @export var audio_stream_player: AudioStreamPlayer
 
@@ -32,8 +34,8 @@ func _on_update_okr():
 
 func game_over(text: String, sound: bool):
 	deadline_alert.text = text
-	deadline_alert.visible = true
 	game_over_screen.visible = true
 	visible = true
 	if sound:
 		audio_stream_player.play()
+	pass

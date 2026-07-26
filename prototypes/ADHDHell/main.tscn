@@ -21,7 +21,7 @@ dopamine_system = NodePath("DopamineSystem")
 hud = NodePath("CharacterController/Camera2D/HUD")
 clock = NodePath("Wall/Clock")
 okr_timer = NodePath("OKRTimer")
-deadline_alert = NodePath("CharacterController/Camera2D/HUD/GameOverScreen/Deadline Alert")
+deadline_alert = NodePath("CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Deadline Alert")
 
 [node name="BehaviourTrackerSystem" type="Node" parent="." unique_id=1246224387]
 script = ExtResource("2_s8r6p")
@@ -90,7 +90,7 @@ drag_top_margin = 0.5
 drag_right_margin = 0.5
 drag_bottom_margin = 0.5
 
-[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("main", "dopamine_system", "progress_bar", "game_over_screen", "h_box_container", "color_rect_1", "color_rect_2", "color_rect_3", "deadline_alert", "audio_stream_player")]
+[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("main", "dopamine_system", "progress_bar", "game_over_screen", "h_box_container", "color_rect_1", "color_rect_2", "color_rect_3", "restart_control", "deadline_alert", "audio_stream_player")]
 follow_viewport_scale = 0.001
 script = ExtResource("6_0l71j")
 main = NodePath("../../..")
@@ -101,8 +101,9 @@ h_box_container = NodePath("Control/HBoxContainer")
 color_rect_1 = NodePath("Control/HBoxContainer/ColorRect1")
 color_rect_2 = NodePath("Control/HBoxContainer/ColorRect2")
 color_rect_3 = NodePath("Control/HBoxContainer/ColorRect3")
-deadline_alert = NodePath("GameOverScreen/Deadline Alert")
-audio_stream_player = NodePath("GameOverScreen/Deadline Alert/DeadlineSound")
+restart_control = NodePath("GameOverScreen/RestartControl")
+deadline_alert = NodePath("GameOverScreen/RestartControl/Deadline Alert")
+audio_stream_player = NodePath("GameOverScreen/RestartControl/Deadline Alert/DeadlineSound")
 
 [node name="ProgressBar" type="ProgressBar" parent="CharacterController/Camera2D/HUD" unique_id=616730029]
 anchors_preset = 9
@@ -114,14 +115,16 @@ value = 100.0
 fill_mode = 3
 
 [node name="GameOverScreen" type="ColorRect" parent="CharacterController/Camera2D/HUD" unique_id=1143214843]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0.52156866)
 
-[node name="Deadline Alert" type="Label" parent="CharacterController/Camera2D/HUD/GameOverScreen" unique_id=1710389741]
+[node name="RestartControl" type="VBoxContainer" parent="CharacterController/Camera2D/HUD/GameOverScreen" unique_id=802109259]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -134,14 +137,32 @@ offset_right = 259.0
 offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Deadline Alert" type="Label" parent="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl" unique_id=1710389741]
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "DEADLINE ALERT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DeadlineSound" type="AudioStreamPlayer" parent="CharacterController/Camera2D/HUD/GameOverScreen/Deadline Alert" unique_id=1627249281]
+[node name="DeadlineSound" type="AudioStreamPlayer" parent="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Deadline Alert" unique_id=1627249281]
 stream = ExtResource("11_w1o0w")
+
+[node name="Button" type="Button" parent="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl" unique_id=2054822129]
+layout_mode = 2
+text = "Restart?"
+
+[node name="ColorRect" type="ColorRect" parent="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Button" unique_id=1718095054]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.22745098, 0.76862746, 0.1764706, 1)
 
 [node name="Control" type="Control" parent="CharacterController/Camera2D/HUD" unique_id=1094649383]
 layout_mode = 3
@@ -176,4 +197,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7520303, 0, 0.070110016, 1)
 
-[connection signal="timeout" from="OKRTimer" to="CharacterController/Camera2D/HUD/GameOverScreen/Deadline Alert" method="_on_okr_timer_timeout"]
+[connection signal="timeout" from="OKRTimer" to="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Deadline Alert" method="_on_okr_timer_timeout"]
+[connection signal="pressed" from="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Button" to="." method="_on_button_pressed"]
