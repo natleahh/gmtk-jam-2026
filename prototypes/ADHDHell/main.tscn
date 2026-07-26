@@ -4,12 +4,13 @@
 [ext_resource type="Script" uid="uid://bmjuryxsl23x2" path="res://prototypes/ADHDHell/main.gd" id="1_ndhnn"]
 [ext_resource type="Texture2D" uid="uid://wr2qryxmkjr8" path="res://prototypes/ADHDHell/Pasted image 20260723145249.png" id="2_0vcbb"]
 [ext_resource type="Script" uid="uid://bpxmtrw1aa55y" path="res://prototypes/ADHDHell/behaviour_tracker_system.gd" id="2_s8r6p"]
-[ext_resource type="Script" uid="uid://g3q68s4lagrf" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
+[ext_resource type="Script" uid="uid://ctsak67naioso" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
 [ext_resource type="PackedScene" uid="uid://dlnnt1jsme788" path="res://prototypes/ADHDHell/computer/computer.tscn" id="4_g7oiy"]
+[ext_resource type="Script" uid="uid://ru7yx7u4s02k" path="res://prototypes/ADHDHell/okr_timer.gd" id="5_s8r6p"]
 [ext_resource type="Script" uid="uid://ciho8h0fymg6s" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
 [ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
 [ext_resource type="Texture2D" uid="uid://bvc0yjc0f7jwu" path="res://prototypes/ADHDHell/clock-face.png" id="7_r4p8i"]
-[ext_resource type="Script" uid="uid://hpkotsmp3t1n" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
+[ext_resource type="Script" uid="uid://skaae8dupmag" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
 [ext_resource type="PackedScene" uid="uid://br7aiyq58itld" path="res://prototypes/ADHDHell/boss/boss.tscn" id="8_w1o0w"]
 [ext_resource type="Script" uid="uid://iluqsfef1fkv" path="res://prototypes/ADHDHell/okr_system.gd" id="9_ce8lw"]
 [ext_resource type="Texture2D" uid="uid://rjm1ps10kkaa" path="res://prototypes/ADHDHell/clock-hand.png" id="9_g7oiy"]
@@ -18,10 +19,10 @@
 [node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud", "clock", "okr_timer", "deadline_alert")]
 script = ExtResource("1_ndhnn")
 dopamine_system = NodePath("DopamineSystem")
-hud = NodePath("CharacterController/Camera2D/HUD")
+hud = NodePath("HUD")
 clock = NodePath("Wall/Clock")
 okr_timer = NodePath("OKRTimer")
-deadline_alert = NodePath("CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Deadline Alert")
+deadline_alert = NodePath("HUD/GameOverScreen/RestartControl/Deadline Alert")
 
 [node name="BehaviourTrackerSystem" type="Node" parent="." unique_id=1246224387]
 script = ExtResource("2_s8r6p")
@@ -30,12 +31,14 @@ script = ExtResource("2_s8r6p")
 script = ExtResource("6_tcltd")
 dopamine_decay = 0.02
 
-[node name="OKRSystem" type="Node" parent="." unique_id=1352379019]
+[node name="OKRSystem" type="Node" parent="." unique_id=1352379019 node_paths=PackedStringArray("okr_timer")]
 script = ExtResource("9_ce8lw")
+okr_timer = NodePath("../OKRTimer")
 
 [node name="OKRTimer" type="Timer" parent="." unique_id=779213374]
-wait_time = 30.0
+wait_time = 60.0
 autostart = true
+script = ExtResource("5_s8r6p")
 
 [node name="Wall" type="CanvasLayer" parent="." unique_id=1918016408]
 layer = -3
@@ -81,20 +84,11 @@ position = Vector2(578, 333)
 script = ExtResource("4_0vcbb")
 metadata/_edit_group_ = true
 
-[node name="Camera2D" type="Camera2D" parent="CharacterController" unique_id=554737291]
-zoom = Vector2(1.7, 1.7)
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.5
-drag_top_margin = 0.5
-drag_right_margin = 0.5
-drag_bottom_margin = 0.5
-
-[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("main", "dopamine_system", "progress_bar", "game_over_screen", "h_box_container", "color_rect_1", "color_rect_2", "color_rect_3", "restart_control", "deadline_alert", "audio_stream_player")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1036558482 node_paths=PackedStringArray("main", "dopamine_system", "progress_bar", "game_over_screen", "h_box_container", "color_rect_1", "color_rect_2", "color_rect_3", "restart_control", "deadline_alert", "audio_stream_player")]
 follow_viewport_scale = 0.001
 script = ExtResource("6_0l71j")
-main = NodePath("../../..")
-dopamine_system = NodePath("../../../DopamineSystem")
+main = NodePath("..")
+dopamine_system = NodePath("../DopamineSystem")
 progress_bar = NodePath("ProgressBar")
 game_over_screen = NodePath("GameOverScreen")
 h_box_container = NodePath("Control/HBoxContainer")
@@ -105,7 +99,7 @@ restart_control = NodePath("GameOverScreen/RestartControl")
 deadline_alert = NodePath("GameOverScreen/RestartControl/Deadline Alert")
 audio_stream_player = NodePath("GameOverScreen/RestartControl/Deadline Alert/DeadlineSound")
 
-[node name="ProgressBar" type="ProgressBar" parent="CharacterController/Camera2D/HUD" unique_id=616730029]
+[node name="ProgressBar" type="ProgressBar" parent="HUD" unique_id=616730029]
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 49.0
@@ -114,7 +108,7 @@ mouse_filter = 2
 value = 100.0
 fill_mode = 3
 
-[node name="GameOverScreen" type="ColorRect" parent="CharacterController/Camera2D/HUD" unique_id=1143214843]
+[node name="GameOverScreen" type="ColorRect" parent="HUD" unique_id=1143214843]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -124,7 +118,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.52156866)
 
-[node name="RestartControl" type="VBoxContainer" parent="CharacterController/Camera2D/HUD/GameOverScreen" unique_id=802109259]
+[node name="RestartControl" type="VBoxContainer" parent="HUD/GameOverScreen" unique_id=802109259]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -138,7 +132,7 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Deadline Alert" type="Label" parent="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl" unique_id=1710389741]
+[node name="Deadline Alert" type="Label" parent="HUD/GameOverScreen/RestartControl" unique_id=1710389741]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
@@ -146,14 +140,14 @@ text = "DEADLINE ALERT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DeadlineSound" type="AudioStreamPlayer" parent="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Deadline Alert" unique_id=1627249281]
+[node name="DeadlineSound" type="AudioStreamPlayer" parent="HUD/GameOverScreen/RestartControl/Deadline Alert" unique_id=1627249281]
 stream = ExtResource("11_w1o0w")
 
-[node name="Button" type="Button" parent="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl" unique_id=2054822129]
+[node name="Button" type="Button" parent="HUD/GameOverScreen/RestartControl" unique_id=2054822129]
 layout_mode = 2
 text = "Restart?"
 
-[node name="ColorRect" type="ColorRect" parent="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Button" unique_id=1718095054]
+[node name="ColorRect" type="ColorRect" parent="HUD/GameOverScreen/RestartControl/Button" unique_id=1718095054]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -164,7 +158,7 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(0.22745098, 0.76862746, 0.1764706, 1)
 
-[node name="Control" type="Control" parent="CharacterController/Camera2D/HUD" unique_id=1094649383]
+[node name="Control" type="Control" parent="HUD" unique_id=1094649383]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -173,7 +167,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterController/Camera2D/HUD/Control" unique_id=155006258]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control" unique_id=155006258]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -182,20 +176,21 @@ offset_left = -149.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="ColorRect1" type="ColorRect" parent="CharacterController/Camera2D/HUD/Control/HBoxContainer" unique_id=892428416]
+[node name="ColorRect1" type="ColorRect" parent="HUD/Control/HBoxContainer" unique_id=892428416]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7520303, 0, 0.070110016, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="CharacterController/Camera2D/HUD/Control/HBoxContainer" unique_id=1092362826]
+[node name="ColorRect2" type="ColorRect" parent="HUD/Control/HBoxContainer" unique_id=1092362826]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7520303, 0, 0.070110016, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="CharacterController/Camera2D/HUD/Control/HBoxContainer" unique_id=1365946085]
+[node name="ColorRect3" type="ColorRect" parent="HUD/Control/HBoxContainer" unique_id=1365946085]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7520303, 0, 0.070110016, 1)
 
-[connection signal="timeout" from="OKRTimer" to="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Deadline Alert" method="_on_okr_timer_timeout"]
-[connection signal="pressed" from="CharacterController/Camera2D/HUD/GameOverScreen/RestartControl/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="OKRTimer" to="." method="_on_okr_timer_timeout"]
+[connection signal="timeout" from="OKRTimer" to="HUD/GameOverScreen/RestartControl/Deadline Alert" method="_on_okr_timer_timeout"]
+[connection signal="pressed" from="HUD/GameOverScreen/RestartControl/Button" to="." method="_on_button_pressed"]

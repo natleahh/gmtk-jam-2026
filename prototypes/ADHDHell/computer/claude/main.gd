@@ -10,8 +10,8 @@ var CLAUDE_TEXT = [
 	[["Please generate a funny joke so my coworkers like me", "Sorry it will take more than a joke for your coworkers to like you", "Why did the chicken cross the road? To improve the chickens crossing road metric"], ["Please read all books on humour to learn what a good joke is", "Searching for the Library of Alexandria, please wait... "], ["Watch every episode of Star Trek to learn what Data learnt about humour", "Piracy is a crime! I cannot help you steal the work of artists"]]
 ]
 
-@export_range(0.0, 1.0, 0.01) var initial_success_chance: float = 0.1
-@export_range(1.0, 2.0, 0.1) var success_scaling: float = 1.1
+@export_range(0.0, 1.0, 0.01) var initial_success_chance: float = 0.2
+@export_range(1.0, 2.0, 0.1) var success_scaling: float = 2.2
 
 #@onready var current_text: Array = CLAUDE_TEXT.pick_random()
 @export var text_box: ReactiveTextEdit

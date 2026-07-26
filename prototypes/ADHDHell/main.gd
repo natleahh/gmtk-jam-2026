@@ -11,6 +11,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	clock.update_clock(okr_timer.time_left, okr_timer.wait_time)
+	print_debug(okr_timer.time_left)
 
 func game_over():
 	var game_over_text: String
@@ -22,3 +23,6 @@ func game_over():
 
 func _on_button_pressed() -> void:
 	get_tree().reload_current_scene()
+
+func _on_okr_timer_timeout() -> void:
+	game_over()

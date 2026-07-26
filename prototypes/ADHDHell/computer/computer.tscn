@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d4kwqosjhmwbe" path="res://prototypes/ADHDHell/Pasted image 20260723145336.png" id="1_d4kym"]
 [ext_resource type="Script" uid="uid://vx80yh4l4i68" path="res://prototypes/ADHDHell/computer/computer_tabs.gd" id="2_vmi4j"]
 [ext_resource type="PackedScene" uid="uid://8hydug6xspq1" path="res://prototypes/ADHDHell/computer/claude/main.tscn" id="3_vmi4j"]
+[ext_resource type="Texture2D" uid="uid://lk6ngv7rbqqr" path="res://prototypes/ADHDHell/computer/cat_1.jpg" id="4_odhl5"]
 
 [node name="Computer" type="Sprite2D" unique_id=735334881]
 texture = ExtResource("1_d4kym")
@@ -18,10 +19,12 @@ script = ExtResource("2_vmi4j")
 [node name="Claude" parent="ComputerTabs" unique_id=668862452 instance=ExtResource("3_vmi4j")]
 visible = false
 layout_mode = 2
-success_scaling = 1.1
+success_scaling = 2.2
 
-[node name="CatPics" type="Panel" parent="ComputerTabs" unique_id=1011314897]
+[node name="CatPics" type="TextureRect" parent="ComputerTabs" unique_id=755751438]
 layout_mode = 2
+texture = ExtResource("4_odhl5")
+expand_mode = 1
 metadata/_tab_index = 1
 
 [connection signal="tab_changed" from="ComputerTabs" to="ComputerTabs" method="_on_tab_changed"]

@@ -1,5 +1,6 @@
 class_name OKRSystem extends Node
 
+@export var okr_timer: Timer
 ## KPI System
 @export_range(0, 20) var max: int = 3
 var _current: int = 0
@@ -9,6 +10,6 @@ var current: int:
 		completion_update.emit()
 		_current += 1
 	get:
-		return _current
+		return _current 
 		
 signal completion_update
