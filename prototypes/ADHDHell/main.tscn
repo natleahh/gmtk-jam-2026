@@ -6,22 +6,22 @@
 [ext_resource type="Script" uid="uid://bpxmtrw1aa55y" path="res://prototypes/ADHDHell/behaviour_tracker_system.gd" id="2_s8r6p"]
 [ext_resource type="Script" uid="uid://ctsak67naioso" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
 [ext_resource type="PackedScene" uid="uid://dlnnt1jsme788" path="res://prototypes/ADHDHell/computer/computer.tscn" id="4_g7oiy"]
-[ext_resource type="Script" uid="uid://w2ikdkwt5ckg" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
+[ext_resource type="Script" uid="uid://ciho8h0fymg6s" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
 [ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
 [ext_resource type="Texture2D" uid="uid://bvc0yjc0f7jwu" path="res://prototypes/ADHDHell/clock-face.png" id="7_r4p8i"]
 [ext_resource type="Script" uid="uid://skaae8dupmag" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
 [ext_resource type="PackedScene" uid="uid://br7aiyq58itld" path="res://prototypes/ADHDHell/boss/boss.tscn" id="8_w1o0w"]
 [ext_resource type="Script" uid="uid://iluqsfef1fkv" path="res://prototypes/ADHDHell/okr_system.gd" id="9_ce8lw"]
 [ext_resource type="Texture2D" uid="uid://rjm1ps10kkaa" path="res://prototypes/ADHDHell/clock-hand.png" id="9_g7oiy"]
-[ext_resource type="Script" uid="uid://drlcgvulxr4d8" path="res://prototypes/ADHDHell/deadline_alert.gd" id="10_g7oiy"]
 [ext_resource type="AudioStream" uid="uid://dntmyhshnx0y3" path="res://deadline_sound.ogg" id="11_w1o0w"]
 
-[node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud", "clock", "okr_timer")]
+[node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud", "clock", "okr_timer", "deadline_alert")]
 script = ExtResource("1_ndhnn")
 dopamine_system = NodePath("DopamineSystem")
 hud = NodePath("CharacterController/Camera2D/HUD")
 clock = NodePath("Wall/Clock")
 okr_timer = NodePath("OKRTimer")
+deadline_alert = NodePath("CharacterController/Camera2D/HUD/GameOverScreen/Deadline Alert")
 
 [node name="BehaviourTrackerSystem" type="Node" parent="." unique_id=1246224387]
 script = ExtResource("2_s8r6p")
@@ -90,7 +90,7 @@ drag_top_margin = 0.5
 drag_right_margin = 0.5
 drag_bottom_margin = 0.5
 
-[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("main", "dopamine_system", "progress_bar", "game_over_screen", "h_box_container", "color_rect_1", "color_rect_2", "color_rect_3")]
+[node name="HUD" type="CanvasLayer" parent="CharacterController/Camera2D" unique_id=1036558482 node_paths=PackedStringArray("main", "dopamine_system", "progress_bar", "game_over_screen", "h_box_container", "color_rect_1", "color_rect_2", "color_rect_3", "deadline_alert", "audio_stream_player")]
 follow_viewport_scale = 0.001
 script = ExtResource("6_0l71j")
 main = NodePath("../../..")
@@ -101,6 +101,8 @@ h_box_container = NodePath("Control/HBoxContainer")
 color_rect_1 = NodePath("Control/HBoxContainer/ColorRect1")
 color_rect_2 = NodePath("Control/HBoxContainer/ColorRect2")
 color_rect_3 = NodePath("Control/HBoxContainer/ColorRect3")
+deadline_alert = NodePath("GameOverScreen/Deadline Alert")
+audio_stream_player = NodePath("GameOverScreen/Deadline Alert/DeadlineSound")
 
 [node name="ProgressBar" type="ProgressBar" parent="CharacterController/Camera2D/HUD" unique_id=616730029]
 anchors_preset = 9
@@ -112,13 +114,34 @@ value = 100.0
 fill_mode = 3
 
 [node name="GameOverScreen" type="ColorRect" parent="CharacterController/Camera2D/HUD" unique_id=1143214843]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.44705883, 0.09803922, 0.09019608, 0.52156866)
+color = Color(0, 0, 0, 0.52156866)
+
+[node name="Deadline Alert" type="Label" parent="CharacterController/Camera2D/HUD/GameOverScreen" unique_id=1710389741]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -259.0
+offset_top = -44.0
+offset_right = 259.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "DEADLINE ALERT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeadlineSound" type="AudioStreamPlayer" parent="CharacterController/Camera2D/HUD/GameOverScreen/Deadline Alert" unique_id=1627249281]
+stream = ExtResource("11_w1o0w")
 
 [node name="Control" type="Control" parent="CharacterController/Camera2D/HUD" unique_id=1094649383]
 layout_mode = 3
@@ -153,20 +176,4 @@ layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7520303, 0, 0.070110016, 1)
 
-[node name="Deadline Alert" type="Label" parent="CharacterController/Camera2D/HUD" unique_id=1710389741]
-visible = false
-offset_left = 400.0
-offset_top = 300.0
-offset_right = 918.0
-offset_bottom = 388.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "DEADLINE ALERT"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("10_g7oiy")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CharacterController/Camera2D/HUD/Deadline Alert" unique_id=1627249281]
-stream = ExtResource("11_w1o0w")
-
-[connection signal="timeout" from="OKRTimer" to="CharacterController/Camera2D/HUD/Deadline Alert" method="_on_okr_timer_timeout"]
+[connection signal="timeout" from="OKRTimer" to="CharacterController/Camera2D/HUD/GameOverScreen/Deadline Alert" method="_on_okr_timer_timeout"]
