@@ -1,6 +1,7 @@
 class_name Dopaminesystem extends Node
 
 @export_range(0, 1, 0.01) var dopamine_decay: float
+@export var dopamine_healing: float = 0.2
 var level: float = 100
 
 @export var bad_behaviour_penalty: float = 20
@@ -21,7 +22,7 @@ func _process(delta: float) -> void:
 	if BehaviourTrackerSystem._good_behaviour:
 		update_level(-dopamine_decay)
 	else:
-		update_level(dopamine_decay)
+		update_level(dopamine_healing)
 	
 	if level < 0:
 		level_depleted.emit()

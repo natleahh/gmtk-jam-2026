@@ -29,7 +29,7 @@ script = ExtResource("2_s8r6p")
 
 [node name="DopamineSystem" type="Node" parent="." unique_id=2120414318]
 script = ExtResource("6_tcltd")
-dopamine_decay = 0.02
+dopamine_decay = 0.1
 
 [node name="OKRSystem" type="Node" parent="." unique_id=1352379019 node_paths=PackedStringArray("okr_timer")]
 script = ExtResource("9_ce8lw")
