@@ -5,31 +5,31 @@
 
 [sub_resource type="Curve2D" id="Curve2D_w2pej"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 100, 400, 0, 0, 0, 0, 1100, 400)
+"points": PackedVector2Array(0, 0, 0, 0, 100, 400, 0, 0, 0, 0, 3500, 400)
 }
 point_count = 2
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyr72"]
+atlas = ExtResource("3_vna0k")
+region = Rect2(2367, 0, 789, 2532)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6n03a"]
 atlas = ExtResource("3_vna0k")
-region = Rect2(0, 0, 357, 783)
+region = Rect2(0, 0, 789, 2532)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wusa"]
 atlas = ExtResource("3_vna0k")
-region = Rect2(714, 0, 357, 783)
+region = Rect2(1578, 0, 789, 2532)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oftmp"]
 atlas = ExtResource("3_vna0k")
-region = Rect2(1071, 0, 357, 783)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vna0k"]
-atlas = ExtResource("3_vna0k")
-region = Rect2(357, 0, 357, 783)
+region = Rect2(789, 0, 789, 2532)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_15pk6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6n03a")
+"texture": SubResource("AtlasTexture_jyr72")
 }],
 "loop": 0,
 "name": &"patrol",
@@ -37,7 +37,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3wusa")
+"texture": SubResource("AtlasTexture_6n03a")
 }],
 "loop": 0,
 "name": &"pissed",
@@ -45,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oftmp")
+"texture": SubResource("AtlasTexture_3wusa")
 }],
 "loop": 0,
 "name": &"satisfied",
@@ -53,7 +53,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vna0k")
+"texture": SubResource("AtlasTexture_oftmp")
 }],
 "loop": 0,
 "name": &"sus",

@@ -1,32 +1,56 @@
 [gd_scene format=3 uid="uid://dlnnt1jsme788"]
 
-[ext_resource type="Texture2D" uid="uid://d4kwqosjhmwbe" path="res://prototypes/ADHDHell/Pasted image 20260723145336.png" id="1_d4kym"]
+[ext_resource type="Texture2D" uid="uid://bbahnumjgcbxi" path="res://prototypes/ADHDHell/computer/computer_desk.png" id="1_odhl5"]
 [ext_resource type="Script" uid="uid://vx80yh4l4i68" path="res://prototypes/ADHDHell/computer/computer_tabs.gd" id="2_vmi4j"]
 [ext_resource type="PackedScene" uid="uid://8hydug6xspq1" path="res://prototypes/ADHDHell/computer/clyde/main.tscn" id="3_vmi4j"]
 [ext_resource type="Texture2D" uid="uid://lk6ngv7rbqqr" path="res://prototypes/ADHDHell/computer/cat_1.jpg" id="4_odhl5"]
 
-[node name="Computer" type="Sprite2D" unique_id=735334881]
-texture = ExtResource("1_d4kym")
+[node name="Node2D" type="Node2D" unique_id=823176517]
 
-[node name="ComputerTabs" type="TabContainer" parent="." unique_id=21514011 node_paths=PackedStringArray("clyde")]
-offset_left = -181.46516
-offset_top = -147.66757
-offset_right = 184.24269
-offset_bottom = 62.895447
+[node name="Control" type="Control" parent="." unique_id=840474040]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -698.0
+offset_top = -771.0
+offset_right = 198.0
+offset_bottom = -300.0
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=322304195]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16078432, 1, 1, 1)
+
+[node name="ComputerTabs" type="TabContainer" parent="Control" unique_id=21514011 node_paths=PackedStringArray("clyde")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = -21.0
+grow_horizontal = 2
+grow_vertical = 2
 current_tab = 1
 script = ExtResource("2_vmi4j")
 clyde = NodePath("Clyde")
 
-[node name="Clyde" parent="ComputerTabs" unique_id=668862452 instance=ExtResource("3_vmi4j")]
+[node name="Clyde" parent="Control/ComputerTabs" unique_id=668862452 instance=ExtResource("3_vmi4j")]
 visible = false
 layout_mode = 2
 success_scaling = 2.2
 
-[node name="CatPics" type="TextureRect" parent="ComputerTabs" unique_id=755751438]
+[node name="CatPics" type="TextureRect" parent="Control/ComputerTabs" unique_id=755751438]
 layout_mode = 2
 texture = ExtResource("4_odhl5")
 expand_mode = 1
 metadata/_tab_index = 1
 
-[connection signal="tab_changed" from="ComputerTabs" to="ComputerTabs" method="_on_tab_changed"]
-[connection signal="tab_clicked" from="ComputerTabs" to="ComputerTabs" method="_on_tab_clicked"]
+[node name="Computer" type="Sprite2D" parent="." unique_id=735334881]
+texture = ExtResource("1_odhl5")
+
+[connection signal="tab_changed" from="Control/ComputerTabs" to="Control/ComputerTabs" method="_on_tab_changed"]
+[connection signal="tab_clicked" from="Control/ComputerTabs" to="Control/ComputerTabs" method="_on_tab_clicked"]

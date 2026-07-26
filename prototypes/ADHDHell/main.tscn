@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://g5aas5einac4"]
 
-[ext_resource type="Texture2D" uid="uid://dstsfqcn0ihh5" path="res://prototypes/ADHDHell/Pasted image 20260723145013.png" id="1_8cddi"]
 [ext_resource type="Script" uid="uid://bmjuryxsl23x2" path="res://prototypes/ADHDHell/main.gd" id="1_ndhnn"]
-[ext_resource type="Texture2D" uid="uid://wr2qryxmkjr8" path="res://prototypes/ADHDHell/Pasted image 20260723145249.png" id="2_0vcbb"]
 [ext_resource type="Script" uid="uid://bpxmtrw1aa55y" path="res://prototypes/ADHDHell/behaviour_tracker_system.gd" id="2_s8r6p"]
-[ext_resource type="Script" uid="uid://g3q68s4lagrf" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
+[ext_resource type="Script" uid="uid://ctsak67naioso" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
 [ext_resource type="PackedScene" uid="uid://dlnnt1jsme788" path="res://prototypes/ADHDHell/computer/computer.tscn" id="4_g7oiy"]
 [ext_resource type="Script" uid="uid://ru7yx7u4s02k" path="res://prototypes/ADHDHell/okr_timer.gd" id="5_s8r6p"]
 [ext_resource type="Script" uid="uid://ciho8h0fymg6s" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
+[ext_resource type="Texture2D" uid="uid://dobo8f1jvjqrm" path="res://prototypes/ADHDHell/wall.png" id="6_s8r6p"]
 [ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
 [ext_resource type="Texture2D" uid="uid://bvc0yjc0f7jwu" path="res://prototypes/ADHDHell/clock-face.png" id="7_r4p8i"]
-[ext_resource type="Script" uid="uid://hpkotsmp3t1n" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
+[ext_resource type="Script" uid="uid://skaae8dupmag" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
 [ext_resource type="PackedScene" uid="uid://br7aiyq58itld" path="res://prototypes/ADHDHell/boss/boss.tscn" id="8_w1o0w"]
 [ext_resource type="Script" uid="uid://iluqsfef1fkv" path="res://prototypes/ADHDHell/okr_system.gd" id="9_ce8lw"]
 [ext_resource type="Texture2D" uid="uid://rjm1ps10kkaa" path="res://prototypes/ADHDHell/clock-hand.png" id="9_g7oiy"]
+[ext_resource type="Texture2D" uid="uid://dk5qufwmtm7e7" path="res://prototypes/ADHDHell/cubicle.png" id="11_s8r6p"]
 [ext_resource type="AudioStream" uid="uid://dntmyhshnx0y3" path="res://deadline_sound.ogg" id="11_w1o0w"]
 
 [node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud", "clock", "okr_timer", "deadline_alert")]
@@ -44,11 +44,10 @@ script = ExtResource("5_s8r6p")
 layer = -3
 follow_viewport_enabled = true
 
-[node name="PastedImage20260723145013" type="Sprite2D" parent="Wall" unique_id=174354709]
+[node name="Wall" type="Sprite2D" parent="Wall" unique_id=174354709]
 z_index = -3
-position = Vector2(579, 323.25)
-scale = Vector2(0.8469388, 0.70487267)
-texture = ExtResource("1_8cddi")
+position = Vector2(-938, -31)
+texture = ExtResource("6_s8r6p")
 
 [node name="Clock" type="Sprite2D" parent="Wall" unique_id=459563768]
 position = Vector2(800, 120)
@@ -65,19 +64,20 @@ layer = -2
 follow_viewport_enabled = true
 
 [node name="Boss" parent="Hallway" unique_id=856368287 instance=ExtResource("8_w1o0w")]
+position = Vector2(-2290, -464)
 
 [node name="WorkSpace" type="CanvasLayer" parent="." unique_id=256454366]
 layer = -1
 follow_viewport_enabled = true
 
 [node name="Cubicle" type="Sprite2D" parent="WorkSpace" unique_id=41187563]
-position = Vector2(670, 442.62503)
-scale = Vector2(0.823492, 0.70558614)
-texture = ExtResource("2_0vcbb")
+position = Vector2(-163, 388.5)
+scale = Vector2(1, 0.8711499)
+texture = ExtResource("11_s8r6p")
 
 [node name="Computer" parent="WorkSpace" unique_id=735334881 instance=ExtResource("4_g7oiy")]
-position = Vector2(632, 443)
-scale = Vector2(1, 0.99999994)
+position = Vector2(370, 827)
+scale = Vector2(2, 2)
 
 [node name="CharacterController" type="Node2D" parent="." unique_id=2007909422]
 position = Vector2(578, 333)
@@ -191,6 +191,10 @@ color = Color(0.7520303, 0, 0.070110016, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7520303, 0, 0.070110016, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1343172439]
+position = Vector2(-653, -189)
+zoom = Vector2(0.3, 0.3)
 
 [connection signal="timeout" from="OKRTimer" to="." method="_on_okr_timer_timeout"]
 [connection signal="timeout" from="OKRTimer" to="HUD/GameOverScreen/RestartControl/Deadline Alert" method="_on_okr_timer_timeout"]
