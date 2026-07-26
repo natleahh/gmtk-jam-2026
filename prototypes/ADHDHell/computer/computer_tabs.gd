@@ -8,7 +8,9 @@ func set_tab_focus(tab: int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_tab_focus(0) # Replace with function body.
+	set_tab_focus(1) # Replace with function body.
+	BehaviourTrackerSystem._good_behaviour = false
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
