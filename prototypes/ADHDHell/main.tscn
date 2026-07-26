@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dobo8f1jvjqrm" path="res://prototypes/ADHDHell/wall.png" id="6_s8r6p"]
 [ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
 [ext_resource type="Texture2D" uid="uid://bvc0yjc0f7jwu" path="res://prototypes/ADHDHell/clock-face.png" id="7_r4p8i"]
-[ext_resource type="Script" uid="uid://skaae8dupmag" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
+[ext_resource type="Script" uid="uid://hpkotsmp3t1n" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
 [ext_resource type="PackedScene" uid="uid://br7aiyq58itld" path="res://prototypes/ADHDHell/boss/boss.tscn" id="8_w1o0w"]
 [ext_resource type="Script" uid="uid://iluqsfef1fkv" path="res://prototypes/ADHDHell/okr_system.gd" id="9_ce8lw"]
 [ext_resource type="Texture2D" uid="uid://rjm1ps10kkaa" path="res://prototypes/ADHDHell/clock-hand.png" id="9_g7oiy"]
