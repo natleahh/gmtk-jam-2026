@@ -36,11 +36,13 @@ func _process(delta: float) -> void:
 			if BehaviourTrackerSystem._good_behaviour:				
 				current_state = BossState.SATISFIED
 				switch_animation("satisfied")
+				$SatisfiedSound.play()
 
 			else:
 				current_state = BossState.PISSED
 				BehaviourTrackerSystem.bad_behaviour_occured.emit()
 				switch_animation("pissed")
+				$PissedSound.play()
 
 
 func _on_timer_timeout() -> void:
@@ -61,7 +63,7 @@ func switch_animation(animation_name: String) -> void:
 func _on_sus_timer_timeout() -> void:
 	current_state = BossState.CHECKING
 	check_complete_timer.start()
-
+	$SusSound.play()
 
 func _on_check_complete_timer_timeout() -> void:
 	current_state = BossState.PATROL

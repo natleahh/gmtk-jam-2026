@@ -57,8 +57,8 @@ position = Vector2(-938, -31)
 texture = ExtResource("6_s8r6p")
 
 [node name="Clock" type="Sprite2D" parent="Wall" unique_id=459563768]
-position = Vector2(800, 120)
-scale = Vector2(2, 2)
+position = Vector2(1140, -941)
+scale = Vector2(6, 6)
 texture = ExtResource("7_r4p8i")
 script = ExtResource("8_suv5x")
 
