@@ -4,7 +4,7 @@ class_name Dopaminesystem extends Node
 @export var dopamine_healing: float = 0.2
 var level: float = 100
 
-@export var bad_behaviour_penalty: float = 20
+@export var bad_behaviour_penalty: float = 40
 
 signal level_updated
 signal level_depleted

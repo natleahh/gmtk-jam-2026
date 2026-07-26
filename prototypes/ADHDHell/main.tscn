@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://bmjuryxsl23x2" path="res://prototypes/ADHDHell/main.gd" id="1_ndhnn"]
 [ext_resource type="Texture2D" uid="uid://wr2qryxmkjr8" path="res://prototypes/ADHDHell/Pasted image 20260723145249.png" id="2_0vcbb"]
 [ext_resource type="Script" uid="uid://bpxmtrw1aa55y" path="res://prototypes/ADHDHell/behaviour_tracker_system.gd" id="2_s8r6p"]
-[ext_resource type="Script" uid="uid://ctsak67naioso" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
+[ext_resource type="Script" uid="uid://g3q68s4lagrf" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
 [ext_resource type="PackedScene" uid="uid://dlnnt1jsme788" path="res://prototypes/ADHDHell/computer/computer.tscn" id="4_g7oiy"]
 [ext_resource type="Script" uid="uid://ru7yx7u4s02k" path="res://prototypes/ADHDHell/okr_timer.gd" id="5_s8r6p"]
 [ext_resource type="Script" uid="uid://ciho8h0fymg6s" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
 [ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
 [ext_resource type="Texture2D" uid="uid://bvc0yjc0f7jwu" path="res://prototypes/ADHDHell/clock-face.png" id="7_r4p8i"]
-[ext_resource type="Script" uid="uid://skaae8dupmag" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
+[ext_resource type="Script" uid="uid://hpkotsmp3t1n" path="res://prototypes/ADHDHell/clock.gd" id="8_suv5x"]
 [ext_resource type="PackedScene" uid="uid://br7aiyq58itld" path="res://prototypes/ADHDHell/boss/boss.tscn" id="8_w1o0w"]
 [ext_resource type="Script" uid="uid://iluqsfef1fkv" path="res://prototypes/ADHDHell/okr_system.gd" id="9_ce8lw"]
 [ext_resource type="Texture2D" uid="uid://rjm1ps10kkaa" path="res://prototypes/ADHDHell/clock-hand.png" id="9_g7oiy"]
@@ -139,6 +139,7 @@ theme_override_font_sizes/font_size = 64
 text = "DEADLINE ALERT"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="DeadlineSound" type="AudioStreamPlayer" parent="HUD/GameOverScreen/RestartControl/Deadline Alert" unique_id=1627249281]
 stream = ExtResource("11_w1o0w")
