@@ -1,9 +1,10 @@
 extends TabContainer
 
+@export var clyde: Control
 
 func set_tab_focus(tab: int):
 	if(tab == 0):
-		$Claude.focus()
+		clyde.focus()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
