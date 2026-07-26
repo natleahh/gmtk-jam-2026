@@ -63,7 +63,6 @@ func switch_animation(animation_name: String) -> void:
 func _on_sus_timer_timeout() -> void:
 	current_state = BossState.CHECKING
 	check_complete_timer.start()
-	$SusSound.play()
 
 func _on_check_complete_timer_timeout() -> void:
 	current_state = BossState.PATROL

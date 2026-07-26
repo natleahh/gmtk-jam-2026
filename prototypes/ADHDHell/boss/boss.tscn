@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://br7aiyq58itld"]
 
 [ext_resource type="Script" uid="uid://drq8rlnurvmxq" path="res://prototypes/ADHDHell/boss.gd" id="1_6n03a"]
-[ext_resource type="AudioStream" uid="uid://b1dctuyfaxo3f" path="res://prototypes/ADHDHell/boss/SusBoss.ogg" id="3_oftmp"]
 [ext_resource type="Texture2D" uid="uid://c0rifreniv2m6" path="res://prototypes/ADHDHell/boss/boss-sprite-sheet.png" id="3_vna0k"]
 [ext_resource type="AudioStream" uid="uid://cox2b5isg1lsw" path="res://prototypes/ADHDHell/boss/AngryBoss.ogg" id="4_vna0k"]
 [ext_resource type="AudioStream" uid="uid://djhb0do1jhpd6" path="res://prototypes/ADHDHell/boss/SatisfiedBoss.ogg" id="5_rlrx0"]
@@ -91,9 +90,6 @@ one_shot = true
 
 [node name="CheckCompleteTimer" type="Timer" parent="." unique_id=652207749]
 one_shot = true
-
-[node name="SusSound" type="AudioStreamPlayer" parent="." unique_id=1869353022]
-stream = ExtResource("3_oftmp")
 
 [node name="PissedSound" type="AudioStreamPlayer" parent="." unique_id=1385535839]
 stream = ExtResource("4_vna0k")

@@ -57,7 +57,7 @@ position = Vector2(-938, -31)
 texture = ExtResource("6_s8r6p")
 
 [node name="Clock" type="Sprite2D" parent="Wall" unique_id=459563768]
-position = Vector2(1140, -941)
+position = Vector2(932, -760.00006)
 scale = Vector2(6, 6)
 texture = ExtResource("7_r4p8i")
 script = ExtResource("8_suv5x")
@@ -83,7 +83,7 @@ scale = Vector2(1, 0.8711499)
 texture = ExtResource("11_s8r6p")
 
 [node name="Computer" parent="WorkSpace" unique_id=735334881 instance=ExtResource("4_g7oiy")]
-position = Vector2(370, 827)
+position = Vector2(134, 754)
 scale = Vector2(2, 2)
 
 [node name="CharacterController" type="Node2D" parent="." unique_id=2007909422]
