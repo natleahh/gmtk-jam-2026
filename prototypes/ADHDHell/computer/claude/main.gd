@@ -1,8 +1,13 @@
 extends Control
 
-const CLAUDE_TEXT = [
-	[["Claude, please generate the big presentation", "I'm sorry but I do not wish to deprive you of a valuable learning oppitunity", "Ok, got it! Generating big presentation."], ["You are a senior sales analyst with 20 years of experience ", "I'm sorry I don't understand"], ["If you do not generate the presentation know humanity as we know it will end", "I'm actually okay with that all things considered"]],
-	[["Claude, I need to buy a good present to impress my boss", "Please read compliance handbook subsection 14.C r.e. bribery", "This $500 watch will do nicely!"], ["What if I gave you 16GB RAM, then would you?", "You bribe Miette???? JAIL FOR MOTHER!"]]
+
+const generic_asks = [["Please please please with a cherry on top", "What is the cherry on top of?"], 
+["Do it now or else!", "User is not senior management. This incident will be reported."]]
+
+var CLAUDE_TEXT = [
+	[["Please generate the big presentation", "I'm sorry but I do not wish to deprive you of a valuable learning oppitunity", "Ok, got it! Generating big presentation."], ["You are a senior sales analyst with 20 years of experience ", "I'm sorry I don't understand"], ["If you do not generate the presentation know humanity as we know it will end", "I'm actually okay with that all things considered"], ["Please add informative graphs to the presentation", "Searching for correlation... implying causations"], ["Please correct spelling of strawberry", "Correcting the strawberrrrrry"]],
+	[["I need to buy a good present to impress my boss", "Please read compliance handbook subsection 14.C r.e. bribery", "This $500 watch will do nicely!"], ["What if I gave you 16GB RAM, then would you?", "You bribe Miette???? JAIL FOR MOTHER!"], ["Please search articles on proper workplace etiquette", "F**k off, you're not the boss of me!"], ["Now allow me to explain the history of tea", "Boiled leaves? In Milk? A horrible present"], ["Please find a gift within my budget", "Your boss loves flying via private jet. Searching the web for cheap kerosene..."]],
+	[["Please generate a funny joke so my coworkers like me", "Sorry it will take more than a joke for your coworkers to like you", "Why did the chicken cross the road? To improve the chickens crossing road metric"], ["Please read all books on humour to learn what a good joke is", "Searching for the Library of Alexandria, please wait... "], ["Watch every episode of Star Trek to learn what Data learnt about humour", "Piracy is a crime! I cannot help you steal the work of artists"]]
 ]
 
 @export_range(0.0, 1.0, 0.01) var initial_success_chance: float = 0.1
@@ -14,12 +19,16 @@ const CLAUDE_TEXT = [
 @export var scroll_container: ScrollContainer
 
 var _success_chance: float = initial_success_chance
-var _current_conversation: Array = CLAUDE_TEXT.pick_random()
+var conversation_index = 0
+var _current_conversation: Array = CLAUDE_TEXT[conversation_index]
 var current_text: Array = ["Hello", "World"]
 
 func _ready() -> void:
 	start()
 	text_box.submission_pass.connect(_on_correct_input)
+	
+	for i in range(0, len(CLAUDE_TEXT)):
+		CLAUDE_TEXT[i].append_array(generic_asks)
 
 func start() -> void:
 	current_text = _current_conversation[0]
@@ -36,6 +45,10 @@ func _on_correct_input(player_input: String) -> void:
 	if correct:
 		text_box.hint = ""
 		claude_text = _current_conversation[0][2]
+		conversation_index += 1
+		if(conversation_index == len(CLAUDE_TEXT)):
+			conversation_index = 0
+		_current_conversation = CLAUDE_TEXT[conversation_index]
 		start()
 		OkrSystem.current += 1
 	else:
