@@ -10,6 +10,7 @@ signal level_depleted
 
 func update_level(change: float) -> void:
 	level += change
+	level = clamp(level, -1, 100)
 	level_updated.emit()	
 	
 func _ready() -> void:
