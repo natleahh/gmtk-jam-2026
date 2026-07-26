@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bhjkr0i2uoe7e" path="res://prototypes/ADHDHell/computer/clyde/main.gd" id="1_hjukk"]
 [ext_resource type="Script" uid="uid://c1daje6qrqiv" path="res://prototypes/ADHDHell/computer/clyde/scroll_container.gd" id="2_vaq0f"]
 [ext_resource type="Script" uid="uid://biqxf0b3yn4uk" path="res://prototypes/ADHDHell/computer/clyde/text_box.gd" id="3_e8ydp"]
+[ext_resource type="AudioStream" uid="uid://dqbt1tickn6d" path="res://prompt_success.mp3" id="4_e8ydp"]
+[ext_resource type="AudioStream" uid="uid://d21rtqop4rnw4" path="res://prompt_error.mp3" id="5_kwck5"]
 
 [sub_resource type="Theme" id="Theme_s8r6p"]
 
@@ -87,3 +89,9 @@ grow_vertical = 2
 keep_editing_on_text_submit = true
 caret_force_displayed = true
 secret = true
+
+[node name="SuccessSound" type="AudioStreamPlayer" parent="." unique_id=929542922]
+stream = ExtResource("4_e8ydp")
+
+[node name="FailSound" type="AudioStreamPlayer" parent="." unique_id=1936104395]
+stream = ExtResource("5_kwck5")

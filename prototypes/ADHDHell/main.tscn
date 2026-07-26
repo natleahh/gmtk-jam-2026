@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ctsak67naioso" path="res://prototypes/ADHDHell/character_controller.gd" id="4_0vcbb"]
 [ext_resource type="PackedScene" uid="uid://dlnnt1jsme788" path="res://prototypes/ADHDHell/computer/computer.tscn" id="4_g7oiy"]
 [ext_resource type="Script" uid="uid://ru7yx7u4s02k" path="res://prototypes/ADHDHell/okr_timer.gd" id="5_s8r6p"]
+[ext_resource type="AudioStream" uid="uid://cq6hqfu8kcs73" path="res://freesound_community-background-printer-32582.mp3" id="5_wrp1o"]
 [ext_resource type="Script" uid="uid://ciho8h0fymg6s" path="res://prototypes/ADHDHell/hud.gd" id="6_0l71j"]
 [ext_resource type="Texture2D" uid="uid://dobo8f1jvjqrm" path="res://prototypes/ADHDHell/wall.png" id="6_s8r6p"]
 [ext_resource type="Script" uid="uid://bkvqfvaoa0che" path="res://prototypes/ADHDHell/dopamine_system.gd" id="6_tcltd"]
@@ -15,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://rjm1ps10kkaa" path="res://prototypes/ADHDHell/clock-hand.png" id="9_g7oiy"]
 [ext_resource type="Texture2D" uid="uid://dk5qufwmtm7e7" path="res://prototypes/ADHDHell/cubicle.png" id="11_s8r6p"]
 [ext_resource type="AudioStream" uid="uid://dntmyhshnx0y3" path="res://deadline_sound.ogg" id="11_w1o0w"]
+[ext_resource type="AudioStream" uid="uid://c1hu6wuggw8ld" path="res://gameover_sound.mp3" id="17_w2pej"]
 
 [node name="Main" type="Node2D" unique_id=623799325 node_paths=PackedStringArray("dopamine_system", "hud", "clock", "okr_timer", "deadline_alert")]
 script = ExtResource("1_ndhnn")
@@ -34,6 +36,11 @@ dopamine_decay = 0.1
 [node name="OKRSystem" type="Node" parent="." unique_id=1352379019 node_paths=PackedStringArray("okr_timer")]
 script = ExtResource("9_ce8lw")
 okr_timer = NodePath("../OKRTimer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1793471735]
+stream = ExtResource("5_wrp1o")
+autoplay = true
+parameters/looping = true
 
 [node name="OKRTimer" type="Timer" parent="." unique_id=779213374]
 wait_time = 60.0
@@ -191,6 +198,9 @@ color = Color(0.7520303, 0, 0.070110016, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7520303, 0, 0.070110016, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HUD" unique_id=2011920628]
+stream = ExtResource("17_w2pej")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1343172439]
 position = Vector2(-653, -189)

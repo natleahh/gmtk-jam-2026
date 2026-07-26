@@ -51,7 +51,10 @@ func _on_correct_input(player_input: String) -> void:
 		_current_conversation = CLYDE_TEXT[conversation_index]
 		start()
 		OkrSystem.current += 1
+		$SuccessSound.play()
 	else:
+		# bad sound
+		$FailSound.play()
 		_success_chance *= success_scaling
 		clyde_text = current_text[1]
 		current_text = _current_conversation.slice(1).pick_random()

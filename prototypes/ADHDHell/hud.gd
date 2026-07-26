@@ -33,9 +33,10 @@ func _on_update_okr():
 	tasks[OkrSystem.current].color = Color("green")
 
 func game_over(text: String, sound: bool):
+	if not game_over_screen.visible:
+		$AudioStreamPlayer.play()
 	deadline_alert.text = text
 	game_over_screen.visible = true
 	visible = true
 	if sound:
 		audio_stream_player.play()
-	pass
