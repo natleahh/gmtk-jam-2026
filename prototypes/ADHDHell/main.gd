@@ -20,6 +20,7 @@ func game_over():
 	else:
 		game_over_text = "GAME OVER: OH NO, WE MISSED THE EOQ (End of Quarter) DEALINE :("
 	hud.game_over(game_over_text, dopamine_system.level > 0)
+	OkrSystem.reset()
 
 func _on_button_pressed() -> void:
 	get_tree().reload_current_scene()
