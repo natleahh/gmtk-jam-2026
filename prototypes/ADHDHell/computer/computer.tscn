@@ -29,21 +29,23 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 7.0
-offset_right = -21.0
+offset_left = 17.0
+offset_top = 20.0
+offset_right = -34.0
+offset_bottom = -29.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
+theme_override_font_sizes/font_size = 32
+current_tab = 0
 script = ExtResource("2_vmi4j")
 clyde = NodePath("Clyde")
 
 [node name="Clyde" parent="Control/ComputerTabs" unique_id=668862452 instance=ExtResource("3_vmi4j")]
-visible = false
 layout_mode = 2
 success_scaling = 2.2
 
 [node name="CatPics" type="TextureRect" parent="Control/ComputerTabs" unique_id=755751438]
+visible = false
 layout_mode = 2
 texture = ExtResource("4_odhl5")
 expand_mode = 1

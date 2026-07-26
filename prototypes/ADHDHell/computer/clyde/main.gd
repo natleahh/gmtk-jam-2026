@@ -61,6 +61,7 @@ func _on_correct_input(player_input: String) -> void:
 func create_chat_box():
 	var label: Label = Label.new()
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.add_theme_font_size_override("font_size", 32)
 	return label
 
 func update_chat(player_input: String, clyde_text: String, correct: bool) -> void:
